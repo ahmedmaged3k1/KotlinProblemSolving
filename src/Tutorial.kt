@@ -1,25 +1,48 @@
 import java.util.*
 
 fun main() {
+    // Expression Evaluation part ( Day 1 )
+    /* val inputExpression: String? = readLine()
+     if (inputExpression != null) {
+         if (isBalanced(inputExpression)) {
+             print("Expression is  Balanced \n")
+             print("Calculating ...... \n")
+             calculateExpression(inputExpression)
+         } else {
+             print("Expression is  not Balanced \n")
+         }
 
-   // val names = listOf("a", "abc", "ab")
-   // val items = listOf("a", "Ma", "M")
-   // val list = listOf("Maze", "Mr.", "More")
+     }*/
+
+    // Collections part ( Day 2 )
+/*
+    // val names = listOf("a", "abc", "ab")
+    // val items = listOf("a", "Ma", "M")
+ //    val list = listOf("Maze", "Mr.", "More")
     // println(    itemsBeforeCondition(items,'a','M').toString())
-    // println(    itemsWithCondition(list,'r','M').toString())
-    // println(    itemsWithDefault(list,'r','M').toString())
-    val inputExpression: String? = readLine()
-    if (inputExpression != null) {
-        if (isBalanced(inputExpression)) {
-            print("Expression is  Balanced \n")
-            print("Calculating ...... \n")
-            calculateExpression(inputExpression)
-        } else {
-            print("Expression is  not Balanced \n")
-        }
+  //   println(    itemsWithCondition(list,'r','M').toString())
+  //   println(    itemsWithDefault(list,'r','M').toString())
+  */
 
-    }
+    // Classes and Inheritance part ( Day 3 )
+    val rect = Rectangle(5.0,4.0)
+    val circle = Circle(15.0)
+    val square = Square(4.0)
+    printAreaOf(rect)
+    printAreaOf(circle)
+    printAreaOf(square)
+    //printAreaOf(rect)
+
 }
+fun printAreaOf(shape: Shape) {
+    println("Area of ${shape.shapeName} is ${shape.shapeArea}")
+
+}
+fun printAreaOf(rectangle: Rectangle) {
+    // TODO: implement
+    println("Area of Rectangle is  ${rectangle.length*rectangle.width}")
+}
+
 
 // TODO: I want to return the only item that matches the following conditions:
 // 1. The item contains the character 'r'
@@ -27,30 +50,36 @@ fun main() {
 // Hint: If no match or more than one match were found, return default result.
 // Hint: ["Mr.", "Maze"] will return "Mr.". ["Mr.", "More"] will return the default result
 fun itemsWithDefault(list: List<String>, condition1: Char, condition2: Char): String {
-    var item = ""
+    /*var item = ""
     var option = 0
+
     list.forEach {
         if (it.contains(condition1) && it[0] == condition2) {
             option++
             item = it
         }
-    }
-    return if (option == 1) item
-    else "Default Answer "
-}
+    }*/
+    val newList  =  list.filter {  (it.contains(condition1) && it[0] == condition2)}
+    return if (newList.size==1) newList.get(0)
+    else
+        "Default Result"
 
+}
 
 // TODO: I want to return the first item that matches the following conditions:
 // 1. The item contains the character 'r'
 // 2. The item starts with the character 'M'
 // Hint: ["Maze", "Mr.", "More"] will return "Mr.".
 fun itemsWithCondition(list: List<String>, condition1: Char, condition2: Char): String {
-    list.forEach {
+  /*  list.forEach {
         if (it.contains(condition1) && it[0] == condition2) {
             return it
         }
-    }
-    return "Not Found"
+    }*/
+   val newList  =  list.filter {  (it.contains(condition1) && it[0] == condition2)}
+    return if (newList.size>1) newList.get(0)
+    else
+        "Not Found"
 }
 
 // TODO: I want to return the items before the one that matches the following conditions:
