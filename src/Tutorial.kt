@@ -2,9 +2,9 @@ import java.util.*
 
 fun main() {
 
-    val names = listOf("a", "abc", "ab")
-    val items = listOf("a", "Ma", "M")
-    val list = listOf("Maze", "Mr.", "More")
+   // val names = listOf("a", "abc", "ab")
+   // val items = listOf("a", "Ma", "M")
+   // val list = listOf("Maze", "Mr.", "More")
     // println(    itemsBeforeCondition(items,'a','M').toString())
     // println(    itemsWithCondition(list,'r','M').toString())
     // println(    itemsWithDefault(list,'r','M').toString())
@@ -17,7 +17,7 @@ fun main() {
         } else {
             print("Expression is  not Balanced \n")
         }
-        
+
     }
 }
 
@@ -26,9 +26,9 @@ fun main() {
 // 2. The item starts with the character 'M'
 // Hint: If no match or more than one match were found, return default result.
 // Hint: ["Mr.", "Maze"] will return "Mr.". ["Mr.", "More"] will return the default result
-fun itemsWithDefault(list: kotlin.collections.List<String>, condition1: Char, condition2: Char): String {
-    var item: String = ""
-    var option: Int = 0
+fun itemsWithDefault(list: List<String>, condition1: Char, condition2: Char): String {
+    var item = ""
+    var option = 0
     list.forEach {
         if (it.contains(condition1) && it[0] == condition2) {
             option++
@@ -44,7 +44,7 @@ fun itemsWithDefault(list: kotlin.collections.List<String>, condition1: Char, co
 // 1. The item contains the character 'r'
 // 2. The item starts with the character 'M'
 // Hint: ["Maze", "Mr.", "More"] will return "Mr.".
-fun itemsWithCondition(list: kotlin.collections.List<String>, condition1: Char, condition2: Char): String {
+fun itemsWithCondition(list: List<String>, condition1: Char, condition2: Char): String {
     list.forEach {
         if (it.contains(condition1) && it[0] == condition2) {
             return it
@@ -58,7 +58,7 @@ fun itemsWithCondition(list: kotlin.collections.List<String>, condition1: Char, 
 // 2. The item starts with the character 'M'
 // Hint: ["a", "Ma", "M"] will return ["a"]
 fun itemsBeforeCondition(
-    list: kotlin.collections.List<String>,
+    list: List<String>,
     condition1: Char,
     condition2: Char
 ): MutableList<String> {
@@ -83,7 +83,7 @@ fun itemsBeforeCondition(
 // TODO: I want to return the items starting with the one that matches the following conditions:
 // 1. The item length equals 'count'
 // Hint: if items = ["a", "abc", "ab"] and count = 3, will return ["abc", "ab"]
-fun itemsWithCount(list: kotlin.collections.List<String>, count: Int): MutableList<String> {
+fun itemsWithCount(list: List<String>, count: Int): MutableList<String> {
     var option = 0
     val resultNames: MutableList<String> = arrayListOf()
     list.forEachIndexed { index, s ->
@@ -103,8 +103,8 @@ fun itemsWithCount(list: kotlin.collections.List<String>, count: Int): MutableLi
 
 // TODO: I want to return the item lengths.
 // Hint: ["a", "abc", "ab"] will return [1, 3, 2]
-fun itemsLength(list: kotlin.collections.List<String>): MutableList<Int> {
-    var numbersList: MutableList<Int> = arrayListOf()
+fun itemsLength(list: List<String>): MutableList<Int> {
+    val numbersList: MutableList<Int> = arrayListOf()
 
     list.forEach {
         numbersList.add(it.length)
@@ -117,7 +117,7 @@ fun itemsLength(list: kotlin.collections.List<String>): MutableList<Int> {
 // 1. The item length is >= 'count'
 // Otherwise, return false.
 // Hint: if items = ["a", "abc"] and count = 3, will return false.
-fun checkCount(list: kotlin.collections.List<String>, count: Int): Boolean {
+fun checkCount(list: List<String>, count: Int): Boolean {
     list.forEach {
         if (it.length != count) return false
     }
