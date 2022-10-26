@@ -1,192 +1,40 @@
 import java.util.*
 
 fun main() {
-    // Expression Evaluation part ( Day 1 )
-    /* val inputExpression: String? = readLine()
-     if (inputExpression != null) {
-         if (isBalanced(inputExpression)) {
-             print("Expression is  Balanced \n")
-             print("Calculating ...... \n")
-             calculateExpression(inputExpression)
-         } else {
-             print("Expression is  not Balanced \n")
-         }
-
-     }*/
-
-    // Collections part ( Day 2 )
-/*
-    // val names = listOf("a", "abc", "ab")
-    // val items = listOf("a", "Ma", "M")
- //    val list = listOf("Maze", "Mr.", "More")
-    // println(    itemsBeforeCondition(items,'a','M').toString())
-  //   println(    itemsWithCondition(list,'r','M').toString())
-  //   println(    itemsWithDefault(list,'r','M').toString())
-  */
-
-    // Classes and Inheritance part ( Day 3 )
-    val rect = Rectangle(5.0,4.0)
-    val circle = Circle(15.0)
-    val square = Square(4.0)
-    printAreaOf(rect)
-    printAreaOf(circle)
-    printAreaOf(square)
-    //printAreaOf(rect)
-
-}
-fun printAreaOf(shape: Shape) {
-    println("Area of ${shape.shapeName} is ${shape.shapeArea}")
-
-}
-fun printAreaOf(rectangle: Rectangle) {
-    // TODO: implement
-    println("Area of Rectangle is  ${rectangle.length*rectangle.width}")
-}
-
-
-// TODO: I want to return the only item that matches the following conditions:
-// 1. The item contains the character 'r'
-// 2. The item starts with the character 'M'
-// Hint: If no match or more than one match were found, return default result.
-// Hint: ["Mr.", "Maze"] will return "Mr.". ["Mr.", "More"] will return the default result
-fun itemsWithDefault(list: List<String>, condition1: Char, condition2: Char): String {
-    /*var item = ""
-    var option = 0
-
-    list.forEach {
-        if (it.contains(condition1) && it[0] == condition2) {
-            option++
-            item = it
-        }
-    }*/
-    val newList  =  list.filter {  (it.contains(condition1) && it[0] == condition2)}
-    return if (newList.size==1) newList.get(0)
-    else
-        "Default Result"
 
 }
 
-// TODO: I want to return the first item that matches the following conditions:
-// 1. The item contains the character 'r'
-// 2. The item starts with the character 'M'
-// Hint: ["Maze", "Mr.", "More"] will return "Mr.".
-fun itemsWithCondition(list: List<String>, condition1: Char, condition2: Char): String {
-  /*  list.forEach {
-        if (it.contains(condition1) && it[0] == condition2) {
-            return it
-        }
-    }*/
-   val newList  =  list.filter {  (it.contains(condition1) && it[0] == condition2)}
-    return if (newList.size>1) newList.get(0)
-    else
-        "Not Found"
-}
 
-// TODO: I want to return the items before the one that matches the following conditions:
-// 1. The item contains the character 'a'
-// 2. The item starts with the character 'M'
-// Hint: ["a", "Ma", "M"] will return ["a"]
-fun itemsBeforeCondition(
-    list: List<String>,
-    condition1: Char,
-    condition2: Char
-): MutableList<String> {
-    var option = 0
-    val resultNames: MutableList<String> = arrayListOf()
-    list.forEachIndexed { index, s ->
-        if (s.contains(condition1) && s[0] == condition2) {
-            for (i in 0 until index) {
-                resultNames.add(list[i])
-                option++
+
+//    val reader = Scanner(System.`in`)
+//    print("Enter a size  of the list: ")
+//    var listSize  = reader.nextInt()
+//    val numberArray =  IntArray(listSize)
+//    numberArray.forEachIndexed { index, i ->
+//        print("Enter a numbers of the list: ")
+//        numberArray[index] = reader.nextInt()
+//    }
+//    print("Enter a Target   of the list: ")
+//    val target  = reader.nextInt()
+//    val list =  twoSum(numberArray,target)
+//    println(    list.contentToString())
+fun twoSum(nums: IntArray, target: Int): IntArray? {
+
+    nums.forEachIndexed  {index1, number1 ->
+        var i =1
+
+        nums.forEach loop@ {
+
+            var index2= index1+i
+            if (index2>=nums.size)return@loop
+
+            if (nums[index1]+(nums[index2])==target)
+            {
+                return listOf<Int>(index1,index2).toIntArray()
             }
+            i++
 
         }
     }
-    if (option == 0) {
-        println("Not Found")
-    }
-    return resultNames
-}
-
-
-// TODO: I want to return the items starting with the one that matches the following conditions:
-// 1. The item length equals 'count'
-// Hint: if items = ["a", "abc", "ab"] and count = 3, will return ["abc", "ab"]
-fun itemsWithCount(list: List<String>, count: Int): MutableList<String> {
-    var option = 0
-    val resultNames: MutableList<String> = arrayListOf()
-    list.forEachIndexed { index, s ->
-        if (s.length == count) {
-            for (i in index until list.size) {
-                resultNames.add(list[i])
-                option++
-            }
-
-        }
-    }
-    if (option == 0) {
-        println("Not Found")
-    }
-    return resultNames
-}
-
-// TODO: I want to return the item lengths.
-// Hint: ["a", "abc", "ab"] will return [1, 3, 2]
-fun itemsLength(list: List<String>): MutableList<Int> {
-    val numbersList: MutableList<Int> = arrayListOf()
-
-    list.forEach {
-        numbersList.add(it.length)
-    }
-    return numbersList
-}
-
-
-// TODO: I want to return true if all items match the following conditions:
-// 1. The item length is >= 'count'
-// Otherwise, return false.
-// Hint: if items = ["a", "abc"] and count = 3, will return false.
-fun checkCount(list: List<String>, count: Int): Boolean {
-    list.forEach {
-        if (it.length != count) return false
-    }
-    return true
-}
-
-//Balance Parentheses Of Equation
-fun isBalanced(expression: String): Boolean {
-    val stack = Stack<Char>()
-    expression.forEach {
-        if (it == '(') {
-            stack.push(it)
-        } else if (it == ')') {
-            stack.pop()
-        }
-
-    }
-    return stack.empty()
-}
-
-//Calculate Expression
-fun calculateExpression(expression: String) {
-    var result: Int = expression[1].toString().toInt()
-    expression.forEachIndexed { index, char ->
-        if (char == '(' || char == ')') return@forEachIndexed
-        if (index == 1) return@forEachIndexed
-        when (char) {
-            '+' -> result += expression[index + 1].toString().toInt()
-            '-' -> result -= expression[index + 1].toString().toInt()
-            '*' -> result *= expression[index + 1].toString().toInt()
-            '/' -> {
-                if (expression[index + 1].toString().toInt() == 0) {
-                    println("Cannot divide by zero , math error")
-                    return
-                }
-                result /= expression[index + 1].toString().toInt()
-            }
-        }
-
-    }
-    print("result is $result \n")
-
+    return null
 }
